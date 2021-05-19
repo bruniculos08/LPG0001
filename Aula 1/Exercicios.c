@@ -17,7 +17,7 @@ int strangemedia(int a, int b){
 
 
 void troca(int *a, int *b){ // void pois não retorna nada 
-    int temp = *a;          // perceba que a função recebe o ponteiros que nesse caso devem ser os endereços &a e &b
+    int temp = *a;          // perceba que a função recebe os ponteiros que nesse caso devem ser os endereços &a e &b
     *a = *b;                // em variavel uma variável "*x" temos "*" que indica "pegar o que está no endereço 'x'('x' é uma variável que armazena um número de endereço)"
     *b = temp;              // um endereço de uma variável "y" é dado por "&y"  
 
