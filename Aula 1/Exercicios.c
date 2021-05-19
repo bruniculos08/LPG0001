@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// como os exercícios passados eram relativamente simples(apenas pra desenferrujar) fiz cada questão como um função de um único arquivo
+// como os exercícios passados eram relativamente simples(apenas pra desenferrujar) fiz cada questão como uma função neste único arquivo
 // assim já relembro um pouco de funções, ponteiros e endereços
 
 
