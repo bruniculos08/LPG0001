@@ -2,8 +2,9 @@
 
  
  int main(void){
+
 // & Conversão de tipos 
-    
+  
 // ^ 1) Entre tipos que armazenam uma quantidade diferente de bytes
 
 /*  
@@ -31,7 +32,19 @@
     printf("\ni = %i", i);
     w = i;
     printf("\nw = %c", w);
+
+
+// ^ 2) Conversão explícita (cast)
+/*
+*   • O operador cast tem a função de forçar a
+*   conversão de valores para um tipo diferente.
+*   • A sintaxe usada para realizar um cast é
+*   colocar o nome do tipo entre parênteses
+*   antes do valor a ser convertido.
+*/
     
+    i = 64321;
+    a = (char) i;
     
 // & Operações com números inteiros 
 
@@ -86,7 +99,6 @@
     printf("%d é maior e %d é menor.\n", maior, menor);
     
 //& Operador Switch
-
 /*
 ~    switch(expressão){
 ~       case constante1:
@@ -113,4 +125,31 @@
 *   • Constantes de caracteres em um switch são automaticamente
 *   convertidas para seus valores inteiros.
 */
+
+    float oper1, oper2;
+    char op;
+    
+    printf("Digite: operando1 operador operando2\n");
+    scanf("%f %c %f", &oper1, &op, &oper2);
+
+    switch(op) {
+        case '+': 
+            printf("%f+%f = %f\n", oper1, oper2, oper1+oper2);
+        break;
+    
+        case '-': 
+            printf("%f-%f = %f\n", oper1, oper2, oper1-oper2);
+        break;
+    
+        case '*': 
+            printf("%f*%f = %f\n", oper1, oper2, oper1*oper2);
+        break;
+    
+        case '/': 
+            printf("%f/%f = %f\n", oper1, oper2, oper1/oper2);
+        break;
+    
+        default: 
+            printf("Operador %c desconhecido!\n", op);
+    }
 }
