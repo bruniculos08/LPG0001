@@ -77,7 +77,7 @@
 *  • Para resolver esse problema, em vez de fazer a comparação com igualdade, verifica-se se a diferença entre ambos os
 *  valores é mínima. Esta diferença dependerá da precisão desejada na aplicação. */
     
-//   ~ fabs (indica módulo)
+//~ fabs (módulo)
 
     if (fabs(1.8 - (1.8/3.0)*3.0) < 0.00001)
     printf("Iguais");
