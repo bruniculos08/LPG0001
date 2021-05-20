@@ -44,7 +44,7 @@
 */
     
     i = 64321;
-    a = (char) i;
+    w = (char) i;
     
 // & Operações com números inteiros 
 
