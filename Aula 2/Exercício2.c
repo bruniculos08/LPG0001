@@ -10,6 +10,7 @@ int main (void){
         average = average + (scores[i]/3);
     }
 
+
     if(average < 6){
         printf("Aluno reprovado.");
     }
