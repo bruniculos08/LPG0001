@@ -2,7 +2,6 @@
 
 
 int main (void){
-
     int i = 0;
     float scores[3], average;
     for(i = 0; i <= 2; i++){
