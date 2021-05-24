@@ -46,8 +46,8 @@ for (inicialização; condição; incremento){
 * Num laço for o comando continue desvia a execução primeiro para a atualização da variável e depois efetua o teste.
 * Em laços do-while e while simplesmente desvia a execução para o teste da condição.
 
-
 */
+
 //^ Exemplo de While:
 
 #include <stdio.h>
