@@ -48,10 +48,10 @@ for (inicialização; condição; incremento){
 
 
 */
-
 //^ Exemplo de While:
 
 #include <stdio.h>
+
 void exemplo_while(){
     int cont, valor, resultado;
     
@@ -104,23 +104,18 @@ void exemplo_for(){
 
 void exemplo_break(){
     
-    int t, cont;
-
+    int t;
     for(t = 0; t < 100; t++){
-    cont = 1;
-
-    for(;;){
-        printf("%d ", cont);
-        cont++;
-        if(t == 10){
-            break;
-        }
+        printf("%d ", t);
+        if(t == 10)
+        break;
     }
 }
 
 //^ Exemplo de Continue:
 
 #include <string.h>
+
 void main( ){
     char str[80];
     int i, espaco;
