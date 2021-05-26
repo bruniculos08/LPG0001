@@ -5,14 +5,15 @@
 // assim já relembro um pouco de funções, ponteiros e endereços
 
 
-int a, b, t;
+int a, b;
+double t;
 
 int soma( int a, int b){
     return (a+b);    
 }
 
-int strangemedia(int a, int b){
-    return ((a*4)+(b*0,6))/2;
+double strangemedia(int a, int b){
+    return ((a*4)+(b*0.6))/2;
 }
 
 
@@ -26,9 +27,14 @@ void troca(int *a, int *b){ // void pois não retorna nada
 
 double converteFahrenheit(double t){
     double t2 = ((9*t)/5 + 32);
-    return ((9*t)/5 + 32);
+    return ((9*t)/5.0 + 32);
 }
 
+
+double converteCelsius(double t){
+    double t2 = 5*(t-32)/9;
+    return (5*(t-32)/9.0);
+}
 
 int main(void){
     
@@ -39,14 +45,19 @@ int main(void){
 
     printf("\nsoma: %i \n", soma(a, b));
 
-    printf("\nmedia estranha = %i \n", strangemedia(a, b));
+    printf("\nmedia estranha = %lf \n", strangemedia(a, b));
  
     troca(&a, &b);
     printf("\ntroca: a = %d, b = %d\n", a, b);
     
     printf("\ndigite uma temperatura em graus celsius: ");
-    scanf("%d", &t);
+    scanf("%lf", &t);
 
-    printf("\ntemperatura em fahrenheit = %4.f", converteFahrenheit(t));
+    printf("\ntemperatura em fahrenheit = %lf\n", converteFahrenheit(t));
+
+    printf("\ndigite uma temperatura em graus celsius: ");
+    scanf("%lf", &t);
+
+    printf("\ntemperatura em fahrenheit = %lf", converteCelsius(t));
 
 }
