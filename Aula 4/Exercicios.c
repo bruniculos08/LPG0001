@@ -7,7 +7,11 @@ CELSIUS e FAHRENHEIT. Caso o usuário deseje converter de CELSIUS para FAHRENHEI
 pressionando a tecla F o programa faz a conversão de FAHRENHEIT para CELSIUS. (F = C * (9/5) + 32). 
 */
 
-void convertertemp(void){
+int tofarenheit(double a);
+int tocelsius(double a);
+
+
+int main(void){
     double temp;
     char option;
     printf("\nType F to converte from farenheit to celsius\n Type F to converte from farenheit to celsius \nYour option: ");
