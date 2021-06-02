@@ -23,7 +23,11 @@ de 1 até o valor informado pelo usuário, ou seja: 1+2+3+...+n. Utilize recursi
  */
 
 int factorialsum(int n){
-    if (n == 1) return 1;
+    if (n == 1){
+        printf("1 = ");
+        return 1;
+    }
+    printf("%i + ", n);
     return n + factorialsum(n-1);
 }
 
@@ -34,8 +38,8 @@ f(2) = 1
 f(n) = f(n-1) + f(n-2)
 */
 
-int fibonacci(int n){
-    if (n == 2 || n == 1) return 1;
+double fibonacci(int n){
+    if (n <= 2) return 1.0;
     return fibonacci(n-1) + fibonacci(n-2);
 }
 
@@ -56,12 +60,12 @@ int main(void){
     case 2:
         printf("You chose factorialsum. Type the number: ");
         scanf("%i", &a);
-        printf("result = %i", factorialsum(a));
+        printf("%i", factorialsum(a));
         break;
     case 3:
         printf("You chose fibonacci. Type the number: ");
         scanf("%i", &a);
-        printf("result = %i", fibonacci(a));
+        printf("result = %lf", fibonacci(a));
         break;
     default:
         printf("You chose an invalid function.");
