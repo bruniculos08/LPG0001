@@ -63,11 +63,12 @@ int scalar_prod(void){
     {   
         scanf("%d", vector1[i]);
     }
-
+    
     printf("Type the vector2: ");
     for (int i = 0; i < 5; i++)
     {   
+        
         scanf("%d", vector2[i]);
     }
-
+    
 }
