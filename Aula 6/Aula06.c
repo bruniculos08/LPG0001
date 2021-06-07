@@ -48,7 +48,7 @@ float Mat3x3[3][3] = {{ 1, 0, 0 },
                       { 0, 1, 0 },
                       { 0, 0, 1 }};
 
-char nome[60] = "Curso de C";
+char nome[60] = "Curso de C"; // ^ isso é o equivalente à: char nome[60] = {'C', 'u', 'r',...}
 
 /* 
 & String em C
@@ -56,6 +56,8 @@ char nome[60] = "Curso de C";
 * Chamamos de string um vetor de caracteres (também chamado de cadeia de caracteres).
 
 * Como são muito usados, existe um conjunto de funções para manipulação de strings em C:
+
+! OBS.: é recomendado importar a biblioteca string.h para evitar warnings
     
     ? gets(<variável>): 
       - lê uma “frase” do teclado (a função scanf para no primeiro espaço);
