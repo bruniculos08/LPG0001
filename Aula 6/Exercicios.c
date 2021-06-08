@@ -57,7 +57,7 @@ os dois vetores escrevendo a resposta.
 */
 
 int scalar_prod(void){
-    int vector1[5], vector2[5];
+    float vector1[5], vector2[5], produto_escalar = 0;
     printf("Type the vector1: ");
     for (int i = 0; i < 5; i++)
     {   
@@ -70,5 +70,7 @@ int scalar_prod(void){
         
         scanf("%d", vector2[i]);
     }
-    
+
+    for (int i = 0; i < 5; i++) produto_escalar += (vector1[i]*vector2[i]);
+    printf("Produto Escalar (scalar product) = %f", produto_escalar);
 }
