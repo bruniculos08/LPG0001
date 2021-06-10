@@ -26,7 +26,7 @@
             "backgroundColor": "transparent"
         },
         {
-            "tag": "•",
+            "tag": "*",
             "color": "#28FF00",
             "strikethrough": false,
             "backgroundColor": "transparent"
