@@ -11,14 +11,13 @@ de seu endereço.
 * Conceito similar ao trabalhar com vetores:
 */
 
-int cria_vetor(void) {
+int cria_vetor(void){
     int i;
     float vetor[10];
     for(i=0; i<10; i++) vetor[i] = 0.0;
 }
 
 /*
-
 * Um ponteiro é uma variável que armazena o endereço de outra variável.
 
 • Iniciantes em programação normalmente têm dificuldade para entender o conceito de ponteiros.
@@ -35,14 +34,10 @@ Exemplo:
 int n;
 
 /*
-
 * Um bloco específico da memória do computador é alocado para guardar o valor da variável.
 
 * O tamanho do bloco depende do intervalo de valores permitido à variável. 
 todo - Por exemplo, em um SO de 32 bits, o tamanho de uma variável do tipo int é de 4 bytes.
-
-
-
 
 • Um ponteiro, como qualquer variável, deve ter um tipo, que é o tipo da variável para a qual ele aponta. 
 Para declarar um ponteiro, especificamos o tipo da variável para a qual ele aponta e seu nome precedido 
@@ -53,7 +48,6 @@ int ponteiro;
 int *ponteiro;
 
 /*
-
 • Para acessar o endereço de uma variável, utilizamos o operador & (e comercial), chamado "operador de
 referência" ou "operador de endereço". Como o nome sugere, ele retorna o endereço na memória de seu operando.
 */
@@ -68,7 +62,6 @@ int a;
 int *ptr = &a;
 
 /*
-
 • Como o ponteiro contém um endereço, podemos também atribuir um valor à variável guardada nesse endereço, ou
 seja, à variável apontada pelo ponteiro. Para isso, usamos o operador * (asterisco), que basicamente significa
 "o valor apontado por":
@@ -77,33 +70,25 @@ seja, à variável apontada pelo ponteiro. Para isso, usamos o operador * (aster
 int ponteiro_p(void) {
 int b;
 int *p = &b;
-
 *p = 20;
 
 printf (" b :%i\n", b);
 printf (" b :%i\n", *p);
 
-
 int a;
 int *p = &a;
-
 *p = 20;
 
 printf (" a :%i\n", a);
 
 int a;
 int *p = &a; int *p1, *p2;
-
 a = 20;
-
 printf (" *p :%i\n", *p);
 }
 
 /*
-
-
-? Operações com ponteiros
-
+~ Operações com ponteiros
 */
 
 int operacoes_ponteiro(void){
@@ -134,6 +119,7 @@ p++;
 • Incremento do ponteiro. Quando incrementamos um ponteiro ele passa a apontar para o próximo valor do
 mesmo tipo em relação ao valor para o qual o ponteiro aponta. Isto é, se temos um ponteiro para um inteiro e 
 o incrementamos, ele passa a apontar para o próximo inteiro. 
+
 * Note que o incremento não ocorre byte-a-byte!
 */
 
@@ -141,17 +127,14 @@ o incrementamos, ele passa a apontar para o próximo inteiro.
 
 /*
 • Colocamos *p entre parênteses para especificar que queremos alterar 
-o valor apontado por p. Ou seja, incrementar o conteúdo da variável apontada 
-pelo ponteiro p.
+o valor apontado por p. Ou seja, incrementar o conteúdo da variável apontada pelo ponteiro p.
 */
 
 x = *p++;
 
 /*
-• A precedência do operador ++ sobre o operador * faz com que a expressão seja 
-equivalente a *(p++).
-
-• A variável x recebe o valor atual do ponteiro que em seguida aponta para o próximo valor.
+* A precedência do operador ++ sobre o operador * faz com que a expressão seja equivalente a *(p++).
+* A variável x recebe o valor atual do ponteiro que em seguida aponta para o próximo valor.
 */
 
 x = *(p + 15);
@@ -162,23 +145,20 @@ apontado por p.
 • Por exemplo, suponhamos que tivéssemos um vetor v cujo primeiro elemento é apontado por p,
 seria o mesmo que escrever x = v[15].
 
-? Ponteiros como parâmetros de funções
-
+~ Ponteiros como parâmetros de funções
     ^ Comecemos por uma situação-problema:
         * eu tenho 2 variáveis e quero trocar o valor delas.
 */
 
 void troca(int i, int j){
     int aux;
-    
     aux = i;
     i = j;
-    
     j = aux;
 }
 
 /*
-• Na função principal (main):
+* Na função principal (main):
 */
 
 int main () {
@@ -196,9 +176,8 @@ int main () {
 
 /*
     ^ Voltando a situação-problema:
-        * para trocar o valor das variáveis através de uma função é necessário passar os endereços como parametros 
-    
-        * nesse caso os ponteiros i e j irão armazenar os endereços
+        * Para trocar o valor das variáveis através de uma função é necessário passar os endereços como parametros 
+        * Nesse caso os ponteiros i e j irão armazenar os endereços
 */ 
 
 void troca(int *i, int *j)
@@ -214,7 +193,7 @@ void troca(int *i, int *j)
 só podem ser passados valores(que são constantes, diferente das variáveis) em um parâmetro, logo a solução se torna
 passar o valor de um endereço como parâmetro. 
 
-• Passagem de parâmetros por referência é realizada utilizando ponteiros.
+* Passagem de parâmetros por referência é realizada utilizando ponteiros.
 
 • scanf é um exemplo de função que utiliza passagem de parâmetro “por referência”. Ela envia o endereço da
 variável que receberá o valor informado pelo usuário.
@@ -233,8 +212,7 @@ int *p = vetor;
 /*
 ^   então vetor[2] é o mesmo *(p+2).
 
-
-? sizeof()
+~ função sizeof()
 
 • Ponteiros armazenam um valor para um determinado byte na memória. Quando usamos os operadores 
 aritméticos com ponteiros, ele avança e retrocede automaticamente de acordo com o tamanho da variável 

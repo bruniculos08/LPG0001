@@ -49,5 +49,8 @@
             "strikethrough": false,
             "backgroundColor": "transparent"
         }
-    ]
+    ],
+    "files.associations": {
+        "stdio.h": "c"
+    }
 }
