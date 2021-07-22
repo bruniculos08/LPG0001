@@ -1,0 +1,1 @@
+//? usar getchar() antes de fgets(...) se der problema
