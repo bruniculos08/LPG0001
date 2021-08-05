@@ -4,7 +4,6 @@
 
 typedef struct estrutura{
     char nome[10], email[20], telefone[11];
-    
 } Estrutura;
 
 
