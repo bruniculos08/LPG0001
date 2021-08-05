@@ -7,15 +7,26 @@ typedef struct data {
     int dia, mes, ano;
 } Data;
 
+typedef struct endereco{
+    char rua[40], numero[5], complemento[20], bairro[20], cep[20], cidade[20], estado[20], pais[20];
+} Endereco;
+
+typedef struct telefone{
+    int DDD;
+    char numero[9];
+} Telefone;
+
 typedef struct pessoa{
-    char nome[50], email[50], rua[50], numero[50], complemento[50], bairro[50], cep[50], cidade[50], estado[50], pais[50], 
-    telefone[11];
+    char nome[50], email[50];
+    Telefone telefone;
     Data nascimento;
+    Endereco endereco;
 } Pessoa;
 
 Pessoa *p;
 int n;
 
+void buscaDados(char nome[]);
 void imprimeAniversarianteDia(int dia, int mes);
 void imprimeAniversarianteMes(int mes);
 void inserePessoa();
@@ -34,6 +45,28 @@ int main(){
         scanf("%i", &(p+i)->nascimento.mes);
         printf("Type the year: ");
         scanf("%i", &(p+i)->nascimento.ano);
+        printf("Type the DDD: ");
+        scanf("%i", &(p+i)->telefone.DDD);
+        printf("Type the telefone number: ");
+        scanf("%s", (p+i)->telefone.numero);
+        printf("Type the street: ");
+        scanf("%s", (p+i)->endereco.rua);
+        printf("Type the number: ");
+        scanf("%s", (p+i)->endereco.numero);
+        printf("Type the complement: ");
+        scanf("%s", (p+i)->endereco.complemento);
+        printf("Type the neighbourhood: ");
+        scanf("%s", (p+i)->endereco.bairro);
+        printf("Type the CEP: ");
+        scanf("%s", (p+i)->endereco.cep);
+        printf("Type the city: ");
+        scanf("%s", (p+i)->endereco.cidade);
+        printf("Type the state: ");
+        scanf("%s", (p+i)->endereco.estado);
+        printf("Type the country: "); 
+        scanf("%s", (p+i)->endereco.pais);
+        printf("Type the email: ");
+        scanf("%s", (p+i)->email);
     }
 
     int option;
@@ -43,10 +76,11 @@ int main(){
         char nome[50];
         int dia, mes;
 
-        printf("\nOptions(type the number):\n1. Insert somebody\n2. Remove somebody\n3. Month Birthdays\n4. Day Birthdays\n5. Exit\n");
+        printf("\nOptions(type the number):\n0. Search somebody \n1. Insert somebody\n2. Remove somebody\n3. Month Birthdays\n4. Day Birthdays\n5. Exit\n");
         scanf("%i", &option);
         
         switch (option){
+        case 0: printf("Type the name: "); scanf("%s", nome); buscaDados(nome); break;
         case 1: inserePessoa(); option = 0; break;
         case 2: printf("Type the name: "); scanf("%s", nome); removePessoa(nome); option = 0; break;
         case 3: printf("Type the month: "); scanf("%i", &mes); imprimeAniversarianteMes(mes); option = 0; break;
@@ -61,6 +95,18 @@ int main(){
     }
 }
 
+void buscaDados(char nome[]){ 
+    printf("\nResult:\n");
+    for (int i = 0; i < n; i++){
+        if (strcmp((p+i)->nome, nome) == 0) 
+        {
+            printf("%s\n", (p+i)->nome);
+            printf("%s\n", (p+i)->email);
+            printf("%s %s\n", (p+i)->telefone.DDD, (p+i)->telefone.numero);
+        }
+    }
+}
+
 void imprimeAniversarianteMes(int mes){
     //n = sizeof(p)/sizeof(Pessoa);
     for (int i = 0; i < n; i++)
@@ -72,7 +118,6 @@ void imprimeAniversarianteMes(int mes){
 }
 
 void imprimeAniversarianteDia(int dia, int mes){
-
     //n = sizeof(p)/sizeof(Pessoa);
     for (int i = 0; i < n; i++)
     {
