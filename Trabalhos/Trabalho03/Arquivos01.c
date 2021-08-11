@@ -7,41 +7,43 @@ int main(void){
     FILE *saida;
     saida = fopen("arquivosaida01.txt","w");
 
-    int v[100], m, k, l[100], i = 0, j = 0, n = 100;
-    do
+    int v[100], k, l[100], i = 0, j = 0, m = 0, n = 0;
+    while(!feof(entrada))
     {
-        /* if (j==n+1){                                    //& quando j = n+1 significa que já foram lidos N números          
-            j = 0;                                      //& j = 0 pois volta para início de linha
-            fscanf(entrada, "\n%i ", &v[i]);            //& scan na próxima linha
-        }
-        if (j == 0){                                    //& verificando primeiro N da linha
-            fscanf(entrada, "%i ", &n);
-            v[i] = n;
-            l[i] = v[i];                                //& armazenando o primeiro N em n
-            printf("%i\n", n);
-        }
-        j++;                                            //& se j = 0 é começo de linha
-        if (j!=0) fscanf(entrada, "%i ", &v[i]);        //& se j diferente de 0 então está no meio da linha
-        i++;
-        k = i;  */
-        fscanf(entrada, "%i ", &v[i]);
-        i++;
-        k = i;
-    } while (!feof(entrada));
-    
-    fclose(entrada);
-    m = l[0];
-    for (i = 0, j = 0; i < k ; i++)
-    {   
-        if (i == m){ 
-            fprintf(saida, "%i\n", v[i]);
-            m = m + l[j];
-        } 
-        else
-        {
-            fprintf(saida, "%i ", v[i]);
-        }
         
-    }
-    
+        fscanf(entrada, "%i ", &v[i]);
+
+        if (i == 0){ l[j] = v[i]+1; printf("iniciando em l[%i] = %i\n", j, l[j]);}
+        //& start in l[0] = 10
+
+        printf("%i ", v[i]);
+
+
+        if (m == l[j]-1 && i != 0){ 
+            j++;
+            fscanf(entrada, "%i ", &l[j]);
+            l[j] = l[j] + 1;
+            m = 0; 
+            printf("\npulando linha em l[%i] = %i:\n", j, l[j]);
+        }   
+
+
+        m++;
+        i++;
+        n = j;
+    };
+    fclose(entrada);
+
+    i = 0;
+    printf("\nn = %i\n", n);
+    for (j = 0; j < n; j++)
+    {
+        printf("linha %i ", j);
+        printf("N = %i \n", l[j]);
+        for (m = 0; m <= l[j]-1; m++){
+            fprintf(saida, "%i ", v[i]);
+            i++;
+        }
+        fprintf(saida, "\n");
+    }    
 }
