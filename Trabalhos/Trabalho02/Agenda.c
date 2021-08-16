@@ -102,7 +102,7 @@ void buscaDados(char nome[]){
         {
             printf("%s\n", (p+i)->nome);
             printf("%s\n", (p+i)->email);
-            printf("%s %s\n", (p+i)->telefone.DDD, (p+i)->telefone.numero);
+            printf("%i %s\n", (p+i)->telefone.DDD, (p+i)->telefone.numero);
         }
     }
 }
