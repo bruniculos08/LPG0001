@@ -96,15 +96,18 @@ int main(){
 }
 
 void buscaDados(char nome[]){ 
-    printf("\nResult:\n");
+    int m = 1;
     for (int i = 0; i < n; i++){
         if (strcmp((p+i)->nome, nome) == 0) 
         {
+            printf("\nResult:\n");
             printf("%s\n", (p+i)->nome);
             printf("%s\n", (p+i)->email);
-            printf("%i %s\n", (p+i)->telefone.DDD, (p+i)->telefone.numero);
+            printf("(%i) %s\n", (p+i)->telefone.DDD, (p+i)->telefone.numero);
+            m = 0;
         }
     }
+    if(m == 1) printf("\nNao encontrado\n");
 }
 
 void imprimeAniversarianteMes(int mes){
@@ -138,6 +141,28 @@ void inserePessoa(){
         scanf("%i", &(p+n-1)->nascimento.mes);
         printf("Type the year: ");
         scanf("%i", &(p+n-1)->nascimento.ano);
+        printf("Type the DDD: ");
+        scanf("%i", &(p+n-1)->telefone.DDD);
+        printf("Type the telefone number: ");
+        scanf("%s", (p+n-1)->telefone.numero);
+        printf("Type the street: ");
+        scanf("%s", (p+n-1)->endereco.rua);
+        printf("Type the number: ");
+        scanf("%s", (p+n-1)->endereco.numero);
+        printf("Type the complement: ");
+        scanf("%s", (p+n-1)->endereco.complemento);
+        printf("Type the neighbourhood: ");
+        scanf("%s", (p+n-1)->endereco.bairro);
+        printf("Type the CEP: ");
+        scanf("%s", (p+n-1)->endereco.cep);
+        printf("Type the city: ");
+        scanf("%s", (p+n-1)->endereco.cidade);
+        printf("Type the state: ");
+        scanf("%s", (p+n-1)->endereco.estado);
+        printf("Type the country: "); 
+        scanf("%s", (p+n-1)->endereco.pais);
+        printf("Type the email: ");
+        scanf("%s", (p+n-1)->email);
 }
 
 void removePessoa(char nome[]){
