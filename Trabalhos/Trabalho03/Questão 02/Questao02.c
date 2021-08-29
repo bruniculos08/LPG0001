@@ -12,7 +12,7 @@ int main(){
     
     for (int i = 0; i < number_lines; i++)
     {
-        printf("Type the number of numbers at the line %i: ", i);
+        printf("Type the number of numbers at the line %i (remember that a line that starts with 0 number is the same as end line): ", i);
         scanf("%i", &number_per_line[i]);
     }
 
@@ -29,4 +29,6 @@ int main(){
         }
         fprintf(saida, "\n");
     }
+
+    fprintf(saida, "0 0 0 0 0");
 }
