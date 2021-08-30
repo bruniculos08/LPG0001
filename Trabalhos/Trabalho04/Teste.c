@@ -74,7 +74,12 @@ Evento add_evento(){
     return novo_evento;
 }
 
-//* retorna 0 se o evento 0 acontecerá antes...
+/* void cadastrar(Evento *agenda){
+    Evento novo_evento = add_evento();
+    agenda = realloc(agenda, sizeof(*agenda) + sizeof(Evento));
+    agenda[sizeof(*agenda)/sizeof(Evento)-1] = novo_evento;
+} */
+
 int compara_data(Evento evento_0, Evento evento_1){
     if (evento_0.data_evento.ano > evento_1.data_evento.ano) return 1;
     if (evento_0.data_evento.ano < evento_1.data_evento.ano) return 0;
@@ -99,11 +104,12 @@ int compara_data(Evento evento_0, Evento evento_1){
     }
 }
 
-void ordenar_vetor(Evento *agenda){
+Evento ordenar_vetor(Evento agenda[]){
     Evento aux_evento;
-    for (int i = 0; i < (sizeof(*agenda)/sizeof(agenda[0])); i++)
+    printf("ordenando");
+    for (int i = 0; i < (sizeof(*agenda)/sizeof(Evento)); i++)
     {
-        for (int j = 0; j < (sizeof(*agenda)/sizeof(agenda[0])); j++)
+        for (int j = 0; j < (sizeof(*agenda)/sizeof(Evento)); j++)
         {
             if (compara_data(agenda[i], agenda[j]) == 1 && i!=j)
             {
@@ -113,24 +119,7 @@ void ordenar_vetor(Evento *agenda){
             }
         }
     }
-}
-
-void cadastrar(Evento *agenda){
-    Evento novo_evento = add_evento();
-    agenda = realloc(agenda, sizeof(*agenda) + sizeof(Evento));
-    agenda[sizeof(*agenda)/sizeof(Evento)] = novo_evento;
-    ordenar_vetor(agenda);
-}
-
-void eventos_data(Evento *agenda, Data data_usuario){
-    int exist = 1;
-    for (int i = 0; i < sizeof(*agenda)/sizeof(Evento); i++){
-        if (agenda[i].data_evento.dia == data_usuario.dia && agenda[i].data_evento.mes == data_usuario.mes && agenda[i].data_evento.ano == data_usuario.ano){
-            printf("Evento: %s\nLocal: %s\n", agenda[i].descricao, agenda[i].local);
-            exist = 0;
-     }
-    }
-    if (exist == 1) printf("Not found any event.\n");
+    return agenda[sizeof(*agenda)/sizeof(Evento)];
 }
 
 void todos_eventos(Evento *agenda){
@@ -141,16 +130,12 @@ void todos_eventos(Evento *agenda){
     }
 }
 
-void cinco_eventos(Evento *agenda, Data data_atual){
-    int j = 0;
-    for (int i = 0; i < sizeof(*agenda)/sizeof(Evento); i++){
-        if (agenda[i].data_evento.dia >= data_atual.dia && agenda[i].data_evento.mes >= data_atual.mes && agenda[i].data_evento.ano >= data_atual.ano){
-            printf("Evento: %s\nLocal: %s\n", agenda[i].descricao, agenda[i].local);
-            j++;
-        }
-        if (j == 5) break;
-    }
-    if (j == 0) printf("There is no scheduled event.");
+Evento cadastrar(Evento *agenda){
+    Evento novo_evento = add_evento();
+    agenda = realloc(agenda, sizeof(*agenda) + sizeof(Evento));
+    agenda[sizeof(*agenda) + sizeof(Evento)-1] = novo_evento;
+    *agenda = ordenar_vetor(agenda);
+    return *agenda;
 }
 
 void remover(Evento *agenda, Data data_evento, Horario hora_inicial){
@@ -163,104 +148,36 @@ void remover(Evento *agenda, Data data_evento, Horario hora_inicial){
         }
         else *(nova_agenda+i) = *(agenda+i);
     }
-
     free(agenda);
     agenda = malloc(((sizeof(*nova_agenda)/sizeof(Evento)))*sizeof(Evento));
     for (int i = 0; i < (sizeof(*nova_agenda)/sizeof(Evento)); i++) *(agenda+i) = *(nova_agenda+1);
     free(nova_agenda);
 }
 
-int main (void) {
+int main (void){
     FILE *arquivo_agenda;
-    arquivo_agenda = fopen("agenda", "r+b");
-    
-    //* colocoando dados no vetor agenda
-    Evento *agenda;
-    todos_eventos(agenda);
-    int tamanho_vetor = 0, option;
-    fseek(arquivo_agenda, 0, SEEK_SET);
-    
+    arquivo_agenda = fopen("teste.txt", "r+b");
+    Evento *agenda = malloc(sizeof(Evento));
 
-    if (arquivo_agenda == NULL)
-    {
-        printf("Error");
-        return 1;
+    if (arquivo_agenda == NULL){
+        printf("Error\n");
     }
-    else 
-    {
-        do
-        {
-            printf("realocating schedule\n");
-            agenda = realloc(agenda, (tamanho_vetor+1)*sizeof(Evento));
-            fread(&agenda[tamanho_vetor], sizeof(Evento), 1, arquivo_agenda);
-            tamanho_vetor++;
-        } while (!feof(arquivo_agenda));
-        
-    }
-
-    do
-    {
-        do
-        {
-            printf("Type your option: \n0.Cadastrar\n1.Mostrar todos os eventos da agenda\n2.Mostrar todos os eventos de uma data\n3.Mostrar 5 eventos proximos\n4.Remover um evento\n5.Sair do programa\n");
-            scanf("%i", &option);
-        } while (option < 0 || option > 5);
-        
-            Data data_usuario;
-            Horario hora_usuario;
-            
-            switch(option){
-            case 0:
-                cadastrar(agenda);
-                break;
-                
-            case 1:
-                todos_eventos(agenda);
-                printf("todos_eventos\n");
-                break;
-        
-            case 2:
-                printf("todos_eventos");
-                printf("Type the year: ");
-                scanf("%i", data_usuario.ano);
-                printf("Type the month: ");
-                scanf("%i", data_usuario.mes);
-                printf("Type the day: ");
-                scanf("%i", data_usuario.dia);
-                eventos_data(agenda, data_usuario);
-                break;
-            
-            case 3:
-                printf("Type today's year: ");
-                scanf("%i", data_usuario.ano);
-                printf("Type today's month: ");
-                scanf("%i", data_usuario.mes);
-                printf("Type today's day: ");
-                scanf("%i", data_usuario.dia);
-                cinco_eventos(agenda, data_usuario);
-                break;
-            case 4:
-                printf("Type the year: ");
-                scanf("%i", data_usuario.ano);
-                printf("Type the month: ");
-                scanf("%i", data_usuario.mes);
-                printf("Type the day: ");
-                scanf("%i", data_usuario.dia);
-                printf("Type the hour: ");
-                scanf("%i", hora_usuario.hora);
-                printf("Type the minute: ");
-                scanf("%i", hora_usuario.minuto);
-                remover(agenda, data_usuario, hora_usuario);
-                break;
-            case 5: 
-                break;
+    else{
+        for (int i = 0; i < sizeof(*agenda)/sizeof(Evento); i++) {
+            fread(&agenda[i], sizeof(Evento), 1, arquivo_agenda);
+            agenda = realloc(agenda, sizeof(*agenda) + sizeof(Evento));
         }
-    } while (option);
-
-    for (int i = 0; i < sizeof(*agenda)/sizeof(Evento); i++)
-    {
-       fwrite(&agenda[i], sizeof(Evento), 1, arquivo_agenda);
     }
+    todos_eventos(agenda);
     fclose(arquivo_agenda);
-    free(agenda);
+    arquivo_agenda = fopen("teste.txt", "wb");
+    fseek(arquivo_agenda, 0, SEEK_SET);
+
+    *agenda = cadastrar(agenda);
+    todos_eventos(agenda);
+
+    
+    printf("%s", agenda[0].descricao);
+    for (int i = 0; i <= sizeof(*agenda)/sizeof(Evento); i++) fwrite(&agenda[i], sizeof(Evento), 1, arquivo_agenda);
+
 }
