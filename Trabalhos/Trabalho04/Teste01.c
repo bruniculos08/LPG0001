@@ -4,7 +4,7 @@
 
 int main (void){
     FILE *arquivo_vetores;
-    arquivo_vetores = fopen("teste01", "r+b");
+    arquivo_vetores = fopen("teste01.txt", "r+b");
     int *agenda;
     agenda = NULL;
     int n, aux;
@@ -26,7 +26,7 @@ int main (void){
     n = sizeof(*agenda)/sizeof(int);
     printf("%d\n", n);
 
-    arquivo_vetores = freopen("teste01", "r+b", arquivo_vetores);
+    arquivo_vetores = freopen("teste01.txt", "r+b", arquivo_vetores);
 
     printf("Type how many new numbers: ");
     scanf("%d", &aux);
@@ -43,13 +43,12 @@ int main (void){
     }
     
     fclose(arquivo_vetores);
-    arquivo_vetores = fopen("teste01", "w+b");
+    arquivo_vetores = fopen("teste01.txt", "w+b");
     fseek(arquivo_vetores, 0, SEEK_SET);
-  /*for (int i = 0; i <= sizeof(*agenda)/sizeof(int); i++) {
-        fwrite(&agenda[i], sizeof(agenda[i]), 2, arquivo_vetores);
-    } */
+    for (int i = 0; i <= sizeof(*agenda)/sizeof(int); i++) {
+        fwrite(&agenda[i], sizeof(&agenda[i]), 1, arquivo_vetores);
+    }
 
-    fwrite(&agenda[0], sizeof(int), 1, arquivo_vetores);
 
     fclose(arquivo_vetores);
 }
