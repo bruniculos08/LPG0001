@@ -26,14 +26,14 @@ int main (void){
     n = sizeof(*agenda)/sizeof(int);
     printf("%d\n", n);
 
-    arquivo_vetores = freopen("teste01.txt", "r+b", arquivo_vetores);
+    arquivo_vetores = freopen("teste01.bin", "a+b", arquivo_vetores);
 
     printf("Type how many new numbers: ");
     scanf("%d", &aux);
-    agenda = realloc(agenda, sizeof(*agenda) + aux*sizeof(int)-1);
+    agenda = realloc(agenda, sizeof(*agenda) + aux*sizeof(int));
 
     for (int i = 0; i < aux; i++){
-        scanf("%i", &agenda[i+n-1]);
+        scanf("%d", &agenda[i+n-1]);
     }
 
 
@@ -42,9 +42,9 @@ int main (void){
         printf("%d\n", agenda[i]);
     }
     
-    fclose(arquivo_vetores);
-    arquivo_vetores = fopen("teste01.txt", "w+b");
-    fseek(arquivo_vetores, 0, SEEK_SET);
+
+    fseek(arquivo_vetores, 0, SEEK_END);
+    
     for (int i = 0; i <= sizeof(*agenda)/sizeof(int); i++) {
         fwrite(&agenda[i], sizeof(&agenda[i]), 1, arquivo_vetores);
     }
